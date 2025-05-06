@@ -23,6 +23,15 @@ fun InicioView(navController: NavHostController) {
             text = "Monitorea tu parpadeo y protege tu salud visual.",
             style = MaterialTheme.typography.bodyLarge
         )
+
+        Spacer(modifier = Modifier.height(32.dp))
+
+        Button(
+            onClick = { navController.navigate("perfil") },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("Ir a Perfil")
+        }
     }
 }
 

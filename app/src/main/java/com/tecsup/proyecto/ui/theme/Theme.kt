@@ -1,43 +1,26 @@
 package com.tecsup.proyecto.ui.theme
 
-import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.lightColorScheme
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
+
+private val DarkColorScheme = darkColorScheme(
+    primary = Color(0xFF4CAF50), // Verde
+    onPrimary = Color.White,
+    background = Color(0xFF121212),
+    onBackground = Color.White,
+    surface = Color(0xFF1E1E1E),
+    onSurface = Color.White
+)
 
 @Composable
 fun ProyectoTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
+    darkTheme: Boolean = true,
     content: @Composable () -> Unit
 ) {
-    val colors = if (darkTheme) {
-        darkColors()
-    } else {
-        lightColors()
-    }
-
     MaterialTheme(
-        colorScheme = colors,
-        typography = Typography,
+        colorScheme = DarkColorScheme,
+        typography = Typography(),
         content = content
     )
 }
-
-private fun darkColors() = darkColorScheme(
-    primary = Green500,
-    secondary = Green200,
-    surface = Black,
-    onSurface = White,
-    onPrimary = White,
-    onSecondary = Black
-)
-
-private fun lightColors() = lightColorScheme(
-    primary = Green700,
-    secondary = Green200,
-    surface = White,
-    onSurface = Black,
-    onPrimary = Black,
-    onSecondary = White
-)

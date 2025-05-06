@@ -14,7 +14,10 @@ fun InicioView(navController: NavHostController) {
             .fillMaxSize()
             .padding(24.dp)
     ) {
-        Text("Bienvenido a Blink Care", style = MaterialTheme.typography.displayLarge)
+        Text(
+            "Bienvenido a Blink Care",
+            style = MaterialTheme.typography.displayLarge
+        )
         Spacer(modifier = Modifier.height(16.dp))
         Text(
             text = "Monitorea tu parpadeo y protege tu salud visual.",
@@ -22,3 +25,4 @@ fun InicioView(navController: NavHostController) {
         )
     }
 }
+

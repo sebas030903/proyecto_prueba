@@ -14,14 +14,11 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Inicializa el ViewModel directamente usando el ViewModelProvider
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
 
         setContent {
             ProyectoTheme {
-                // Usamos directamente AppNavigation aquí
                 val navController = rememberNavController()
-
                 AppNavigation(navController = navController, userViewModel = userViewModel)
             }
         }

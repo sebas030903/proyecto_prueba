@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.*
 
 @Composable
-fun AppNavigation(navController: NavHostController) {
+fun AppNavigation(navController: NavHostController, userViewModel: UserViewModel) {
     val items = listOf(
         BottomNavItem.Inicio,
         BottomNavItem.Estadisticas,
@@ -53,7 +53,7 @@ fun AppNavigation(navController: NavHostController) {
             composable(BottomNavItem.Estadisticas.route) { EstadisticasView() }
             composable(BottomNavItem.Conexion.route) { ConexionView() }
             composable(BottomNavItem.Ajustes.route) { AjustesView() }
-            composable(BottomNavItem.Perfil.route) { PerfilView() }
+            composable(BottomNavItem.Perfil.route) { PerfilView(viewModel = userViewModel) }
         }
     }
 }

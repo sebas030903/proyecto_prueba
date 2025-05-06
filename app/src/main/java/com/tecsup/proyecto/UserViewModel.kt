@@ -18,15 +18,10 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun update(user: User) {
-        viewModelScope.launch {
-            userDao.updateUser(user)
-        }
-    }
-
     fun delete(user: User) {
         viewModelScope.launch {
             userDao.deleteUser(user)
         }
     }
 }
+

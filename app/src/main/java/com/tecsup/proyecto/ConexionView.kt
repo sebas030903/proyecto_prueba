@@ -18,7 +18,7 @@ fun ConexionView() {
         Spacer(Modifier.height(16.dp))
         Text("Estado: Desconectado")
         Spacer(Modifier.height(8.dp))
-        Button(onClick = { /* Acción para reconectar */ }) {
+        Button(onClick = { }) {
             Text("Reconectar")
         }
     }

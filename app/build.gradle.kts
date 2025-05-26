@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     id("kotlin-kapt")
+    id("com.google.gms.google-services")
 
 }
 
@@ -47,11 +48,12 @@ val nav_version = "2.7.7"
 
 dependencies {
 
+    implementation("com.google.firebase:firebase-auth-ktx")
+    implementation("com.google.firebase:firebase-firestore-ktx")
+    implementation(platform("com.google.firebase:firebase-bom:33.14.0"))
     implementation("androidx.compose.material:material-icons-extended")
     implementation("androidx.navigation:navigation-compose:$nav_version")
-    implementation("androidx.room:room-runtime:$room_version")
-    implementation("androidx.room:room-ktx:$room_version")
-    kapt("androidx.room:room-compiler:$room_version")
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)

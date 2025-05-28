@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "435925432427",
+    "project_id": "proyectoapp-dffaf",
+    "storage_bucket": "proyectoapp-dffaf.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:435925432427:android:9c5f7856ce06dd8cc5192e",
+        "android_client_info": {
+          "package_name": "com.tecsup.proyecto"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtjle1wE0HksIhcw8q6S9F3oqJ4p-q_4U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

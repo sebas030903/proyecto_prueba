@@ -1,4 +1,8 @@
 package com.tecsup.proyecto.services
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.UserProfileChangeRequest
+import kotlinx.coroutines.tasks.await
+
 
 class AuthService(private val auth: FirebaseAuth = FirebaseAuth.getInstance()) {
 

@@ -83,4 +83,8 @@ class AuthViewModel : ViewModel() {
         firebaseAuth.signOut()
         _isAuthenticated.value = false
     }
+
+    fun getUserName(): String? {
+        return FirebaseAuth.getInstance().currentUser?.displayName
+    }
 }

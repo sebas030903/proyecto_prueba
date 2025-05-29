@@ -12,7 +12,20 @@
           "package_name": "com.tecsup.proyecto"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "435925432427-piqs3h4ijd9rm8ptmvesubl759u2f8r8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tecsup.proyecto",
+            "certificate_hash": "080c1bd2b9359712259ce6ff9c399615b0d9af75"
+          }
+        },
+        {
+          "client_id": "435925432427-ppddirc4n2rpnne9m06fsnuivn6a1tad.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBtjle1wE0HksIhcw8q6S9F3oqJ4p-q_4U"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "435925432427-ppddirc4n2rpnne9m06fsnuivn6a1tad.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

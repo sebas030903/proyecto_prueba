@@ -48,6 +48,7 @@ val nav_version = "2.7.7"
 
 dependencies {
 
+    implementation("androidx.activity:activity-compose:1.7.2")
     implementation("io.coil-kt:coil-compose:2.4.0")
 
     implementation("com.google.android.gms:play-services-auth:21.0.0")
@@ -79,4 +80,4 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 }
 
-apply(plugin = "com.google.gms.google-services") // ✅ esto activa el plugin
+apply(plugin = "com.google.gms.google-services")

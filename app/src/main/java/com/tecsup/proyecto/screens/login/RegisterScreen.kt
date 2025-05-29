@@ -7,14 +7,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.google.firebase.auth.UserProfileChangeRequest
 import com.tecsup.proyecto.viewmodel.AuthViewModel
+import com.google.firebase.auth.FirebaseAuth
 
 @Composable
-fun LoginScreen(
+fun RegisterScreen(
     navController: NavController,
     authViewModel: AuthViewModel,
-    onLoginSuccess: () -> Unit
+    onRegisterSuccess: () -> Unit
 ) {
+    var name by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var errorMessage by remember { mutableStateOf<String?>(null) }
@@ -25,8 +28,15 @@ fun LoginScreen(
             .padding(24.dp),
         verticalArrangement = Arrangement.Center
     ) {
-        Text("Iniciar Sesión", style = MaterialTheme.typography.headlineMedium)
+        Text("Crear cuenta", style = MaterialTheme.typography.headlineMedium)
         Spacer(modifier = Modifier.height(16.dp))
+
+        OutlinedTextField(
+            value = name,
+            onValueChange = { name = it },
+            label = { Text("Nombre") },
+            modifier = Modifier.fillMaxWidth()
+        )
 
         OutlinedTextField(
             value = email,
@@ -50,21 +60,26 @@ fun LoginScreen(
 
         Button(
             onClick = {
-                authViewModel.login(email, password) { success ->
-                    if (success) {
-                        onLoginSuccess()
-                    } else {
-                        errorMessage = "Correo o contraseña inválidos"
+                FirebaseAuth.getInstance()
+                    .createUserWithEmailAndPassword(email, password)
+                    .addOnSuccessListener {
+                        val profileUpdates = UserProfileChangeRequest.Builder()
+                            .setDisplayName(name)
+                            .build()
+                        FirebaseAuth.getInstance().currentUser?.updateProfile(profileUpdates)
+                        onRegisterSuccess()
                     }
-                }
+                    .addOnFailureListener {
+                        errorMessage = it.localizedMessage ?: "Error al registrar"
+                    }
             },
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text("Iniciar Sesión")
+            Text("Registrarse")
         }
 
-        TextButton(onClick = { navController.navigate("register") }) {
-            Text("¿No tienes cuenta? Regístrate")
+        TextButton(onClick = { navController.popBackStack() }) {
+            Text("¿Ya tienes cuenta? Inicia sesión")
         }
     }
 }

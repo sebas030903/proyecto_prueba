@@ -14,17 +14,18 @@ import com.tecsup.proyecto.screens.conexion.ConexionView
 import com.tecsup.proyecto.screens.estadisticas.EstadisticasView
 import com.tecsup.proyecto.screens.inicio.InicioScreen
 import com.tecsup.proyecto.screens.login.LoginScreen
+import com.tecsup.proyecto.screens.login.RegisterScreen
 import com.tecsup.proyecto.screens.perfil.PerfilView
 import com.tecsup.proyecto.viewmodel.AuthViewModel
 
 @Composable
 fun AppNavigation(
-    authViewModel: AuthViewModel = viewModel() // ✅ ViewModel correctamente inyectado
+    authViewModel: AuthViewModel = viewModel()
 ) {
     val navController = rememberNavController()
     val isAuthenticated by authViewModel.isAuthenticated.collectAsState()
 
-    val bottomItems = BottomNavItem.items // usa el companion object
+    val bottomItems = BottomNavItem.items
 
     Scaffold(
         bottomBar = {
@@ -58,9 +59,10 @@ fun AppNavigation(
             startDestination = if (isAuthenticated) BottomNavItem.Inicio.route else "login",
             modifier = Modifier.padding(innerPadding)
         ) {
-            // Login screen (solo si no está autenticado)
+            // Login
             composable("login") {
                 LoginScreen(
+                    navController = navController,
                     authViewModel = authViewModel,
                     onLoginSuccess = {
                         navController.navigate(BottomNavItem.Inicio.route) {
@@ -70,22 +72,25 @@ fun AppNavigation(
                 )
             }
 
-            // Pantallas protegidas
-            composable(BottomNavItem.Inicio.route) {
-                InicioScreen(navController)
+            // Registro
+            composable("register") {
+                RegisterScreen(
+                    navController = navController,
+                    authViewModel = authViewModel,
+                    onRegisterSuccess = {
+                        navController.navigate(BottomNavItem.Inicio.route) {
+                            popUpTo("register") { inclusive = true }
+                        }
+                    }
+                )
             }
-            composable(BottomNavItem.Estadisticas.route) {
-                EstadisticasView()
-            }
-            composable(BottomNavItem.Conexion.route) {
-                ConexionView()
-            }
-            composable(BottomNavItem.Ajustes.route) {
-                AjustesView()
-            }
-            composable(BottomNavItem.Perfil.route) {
-                PerfilView(authViewModel = authViewModel)
-            }
+
+            // Vistas principales (autenticado)
+            composable(BottomNavItem.Inicio.route) { InicioScreen(navController) }
+            composable(BottomNavItem.Estadisticas.route) { EstadisticasView() }
+            composable(BottomNavItem.Conexion.route) { ConexionView() }
+            composable(BottomNavItem.Ajustes.route) { AjustesView() }
+            composable(BottomNavItem.Perfil.route) { PerfilView(authViewModel) }
         }
     }
 }
